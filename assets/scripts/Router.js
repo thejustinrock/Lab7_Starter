@@ -37,7 +37,9 @@ export class Router {
      * Just like in the constructor above, store the pageFunc variable inside this
      * router instance using the 'this' keyword. Substitute 'home' for the variable
      * page
+     * Finished!
      */
+    this[page] = pageFunc;
   }
 
   /**
@@ -65,5 +67,23 @@ export class Router {
      *     and URL + hash to history
      *  4. Finally, call the stored function for the given page
      */
+    if(this[page]) {
+      var hash;
+      if (page == "home") {
+        hash = "";
+      }
+      else {
+        hash = "#" + page;
+      }
+      var url = new URL(window.location);
+      if (!(statePopped) && window.location.hash != hash ){
+        history.pushState({page: page}, "", url.origin + hash);
+      }
+      this[page]();
+    }
+    else {
+      console.error("It seems that the page does not exists!");
+      return;
+    }
   }
 }
