@@ -26,8 +26,8 @@ const router = new Router(function () {
    * If you did this right, you should see just 1 recipe card rendered to the screen
    * Finished!
    */
-  document.querySelector("section.section--recipe-cards").classList.add("shown");
-  document.querySelector("section.section--recipe-expand").classList.remove("shown");
+  document.querySelector(".section.section--recipe-cards").classList.add("shown");
+  document.querySelector(".section.section--recipe-expand").classList.remove("shown");
 });
 
 window.addEventListener('DOMContentLoaded', init);
@@ -92,7 +92,7 @@ async function fetchRecipes() {
  */
 function createRecipeCards() {
   // Makes a new recipe card
-  for (let i = 0; i < recipes.length(); i++) {
+  for (let i = 0; i < recipes.length; i++) {
     const recipeCard = document.createElement('recipe-card');
 
   // Inputs the data for the card. This is just the first recipe in the recipes array,
@@ -185,7 +185,7 @@ function bindEscKey() {
    * if the escape key is pressed, use your router to navigate() to the 'home'
    * page. This will let us go back to the home page from the detailed page.
    */
-  document.addEventListener("keydown", (event) => {
+  document.addEventListener("keydown", () => {
     if(event.key == "Escape") {
       router.navigate("home");
     }
